@@ -1,11 +1,11 @@
-import './App.css'
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Buscador } from './Component/Buscador';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { Tarea } from './Types'
 
 function App() {
 
-  const [tareas, setTareas] = useState([
+  const [tareas, setTareas] = useState<Tarea[]>([
     {id: 1, texto: 'aprender react', completada: false},
     {id: 2, texto: 'aprender javascript', completada: false},
     {id: 3, texto: 'aprender typescript', completada: true},
@@ -14,8 +14,8 @@ function App() {
   const [nuevaTarea, setNuevaTarea] = useState('');
 
   //Agregar nueva tarea 
-  const agregarTarea = (e) => {
-    e.prevenDefault();
+  const agregarTarea = (e: React.FormEvent) => {
+    e.preventDefault();
     if (!nuevaTarea.trim()) return;
 
     const tareaAgregada = {
@@ -28,8 +28,8 @@ function App() {
     setNuevaTarea('');
   }
 
-  //cambio de estado de la tarea (cpmletada/descompletar)
-  const cambioTarea = (id) => {
+  //cambio de estado de la tarea (comletada/descompletar)
+  const onCambioTarea = (id: number) => {
     setTareas(
       tareas.map((t) => (t.id === id ? {...t, completada: !t.completada } : t ))
     );

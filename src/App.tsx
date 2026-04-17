@@ -18,7 +18,7 @@ function App() {
     e.preventDefault();
     if (!nuevaTarea.trim()) return;
 
-    const tareaAgregada = {
+    const tareaAgregada: Tarea = {
       id: Date.now(),
       texto: nuevaTarea,
       completada: false,
@@ -42,7 +42,7 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={<Navigate to={'/inicio'} replace /> }/>
-        <Route path='/inicio' element={<><Buscador agregarTarea={agregarTarea} nuevaTarea={nuevaTarea} setNuevaTarea={setNuevaTarea} pendiente={pendiente} completada={completada} cambioTarea={cambioTarea} /> </> } />
+        <Route path='/inicio' element={<><Buscador agregarTarea={agregarTarea} nuevaTarea={nuevaTarea} setNuevaTarea={setNuevaTarea} pendiente={pendiente} completada={completada} onCambioTarea={onCambioTarea} /> </> } />
       </Routes>
     </>
   )

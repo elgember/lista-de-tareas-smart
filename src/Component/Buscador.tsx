@@ -25,21 +25,21 @@ export const Buscador = ({ agregarTarea, nuevaTarea, setNuevaTarea, pendiente, c
     return (
     <div className="w-full flex flex-col items-center">
         <div className="flex gap-6 p-4">
-            <button className={`${tab === 'pendiente' ? 'border-b border-[#48e]' : ''}`} onClick={() => setTab('pendiente')}>Pendientes</button>
-            <button className={`${tab === 'completada' ? 'border-b border-[#48e]' : ''}`} onClick={() => setTab('completada')}>Completadas</button>
+            <button className={`${tab === 'pendiente' ? 'border-b border-[#48e] text-[#48e]' : ''}`} onClick={() => setTab('pendiente')}>Pendientes</button>
+            <button className={`${tab === 'completada' ? 'border-b border-[#48e] text-[#48e]' : ''}`} onClick={() => setTab('completada')}>Completadas</button>
         </div>
         <h1>Toda la lista</h1>
         <form onSubmit={envioTarea} className="p-4 relative">
             <Icon className="absolute top-5 left-6" icon="f7:search" width="24" height="24" />
             <input className="bg-[#f5f5f4] rounded border border-[#d1d5db] pl-9 p-1" type="text" value={nuevaTarea} onChange={(e) => setNuevaTarea(e.target.value)} placeholder="¿Que hay que hacer?" />
-            <button className="ml-6 bg-[#48e] py-1 px-2 rounded text-white cursor-pointer" type="submit">Agregar</button>
+            <button className="ml-6 bg-[#48e] py-1 px-3 rounded text-white cursor-pointer" type="submit">Agregar</button>
         </form>
         <div className="w-full">
             <ul>
                 {tab === 'pendiente' ? (
-                    <div>
+                    <div className="w-fill">
                         <h2 className="text-center p-4">Tareas Pendiente</h2>
-                        <ul>
+                        <ul className="py-4">
                             {pendiente.map((item) => (
                                 <li key={item.id}>
                                     <Pendiente item={item} onCambioTarea={onCambioTarea} />
@@ -48,9 +48,9 @@ export const Buscador = ({ agregarTarea, nuevaTarea, setNuevaTarea, pendiente, c
                         </ul>
                     </div>
                 ) : (
-                    <div>
+                    <div className="w-full">
                         <h2 className="text-center p-2">Tareas Completadas</h2>
-                        <ul>
+                        <ul className="py-4">
                             {completada.map((item) => (
                                 <li key={item.id}>
                                     <Completado item={item} onCambioTarea={onCambioTarea} />

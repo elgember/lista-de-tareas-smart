@@ -14,9 +14,8 @@ function App() {
   const [nuevaTarea, setNuevaTarea] = useState('');
 
   //Agregar nueva tarea 
-  const agregarTarea = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!nuevaTarea.trim()) return;
+  const agregarTarea = (texto: string) => {
+    if (!texto.trim()) return;
 
     const tareaAgregada: Tarea = {
       id: Date.now(),

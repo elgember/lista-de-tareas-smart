@@ -12,6 +12,15 @@ function App() {
     {id: 3, texto: 'aprender typescript', completada: true},
   ]);
 
+  //funcion para eliminar tareas completadas
+  const eliminarTarea = (id: number) => {
+    if (window.confirm('¿seguro que quieres borrar esta tarea')) {
+      //filtar todas las tareas con id difente al recibido
+    const recienAgregado = tareas.filter(tarea => tarea.id !== id);
+    setTareas(recienAgregado);
+    }
+  }
+
   const [nuevaTarea, setNuevaTarea] = useState('');
 
   //Agregar nueva tarea 
@@ -35,7 +44,7 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={<Navigate to={'/inicio'} replace /> }/>
-        <Route path='/inicio' element={<><Buscador agregarTarea={agregarTarea} nuevaTarea={nuevaTarea} setNuevaTarea={setNuevaTarea} pendiente={pendiente} completada={completada} onCambioTarea={onCambioTarea} /> </> } />
+        <Route path='/inicio' element={<><Buscador eliminarTarea={eliminarTarea} agregarTarea={agregarTarea} nuevaTarea={nuevaTarea} setNuevaTarea={setNuevaTarea} pendiente={pendiente} completada={completada} onCambioTarea={onCambioTarea} /> </> } />
       </Routes>
     </>
   )

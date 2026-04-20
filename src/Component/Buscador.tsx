@@ -11,9 +11,10 @@ interface Props {
     pendiente: Tarea[];
     completada: Tarea[];
     onCambioTarea: (id: number) => void;
+    eliminarTarea: (id: number) => void;
 }
 
-export const Buscador = ({ agregarTarea, nuevaTarea, setNuevaTarea, pendiente, completada, onCambioTarea }: Props) => {
+export const Buscador = ({eliminarTarea, agregarTarea, nuevaTarea, setNuevaTarea, pendiente, completada, onCambioTarea }: Props) => {
 
     const [tab, setTab] = useState('pendiente');
 
@@ -38,7 +39,8 @@ export const Buscador = ({ agregarTarea, nuevaTarea, setNuevaTarea, pendiente, c
             <ul>
                 {tab === 'pendiente' ? (
                     <div className="w-fill">
-                        <h2 className="text-center p-4">Tareas Pendiente</h2>
+                        {pendiente.length === 0 ?
+                        <h2 className="text-center p-4">No hay Tareas Pendientes</h2> : <h2 className="text-center p-4">Tareas Pendiente</h2>}
                         <ul className="py-4">
                             {pendiente.map((item) => (
                                 <li key={item.id}>
@@ -49,11 +51,12 @@ export const Buscador = ({ agregarTarea, nuevaTarea, setNuevaTarea, pendiente, c
                     </div>
                 ) : (
                     <div className="w-full">
-                        <h2 className="text-center p-2">Tareas Completadas</h2>
+                        {completada.length === 0 ? 
+                        <h2 className="text-center p-2">No hay Tareas Completadas</h2> : <h2 className="text-center p-2">Tareas Completadas</h2>}
                         <ul className="py-4">
                             {completada.map((item) => (
                                 <li key={item.id}>
-                                    <Completado item={item} onCambioTarea={onCambioTarea} />
+                                    <Completado item={item} onCambioTarea={onCambioTarea} eliminarTarea={eliminarTarea} />
                                 </li>
                             ))}
                         </ul>

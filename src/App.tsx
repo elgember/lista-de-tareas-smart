@@ -1,11 +1,12 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Buscador } from './Component/Buscador';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Tarea } from './Types'
+import { useLocalStorage } from './Component/useLocalStorage';
 
 function App() {
 
-  const [tareas, setTareas] = useState<Tarea[]>([
+  const [tareas, setTareas] = useLocalStorage<Tarea[]>('mis_tareas',[
     {id: 1, texto: 'aprender react', completada: false},
     {id: 2, texto: 'aprender javascript', completada: false},
     {id: 3, texto: 'aprender typescript', completada: true},
@@ -15,15 +16,8 @@ function App() {
 
   //Agregar nueva tarea 
   const agregarTarea = (texto: string) => {
-    if (!texto.trim()) return;
-
-    const tareaAgregada: Tarea = {
-      id: Date.now(),
-      texto: nuevaTarea,
-      completada: false,
-    }
-
-    setTareas([...tareas, tareaAgregada]);
+    const nueva = { id: Date.now(), texto, completada: false };
+    setTareas([...tareas, nueva]);
     setNuevaTarea('');
   }
 

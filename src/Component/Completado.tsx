@@ -13,7 +13,7 @@ export const Completado = ({ item, onCambioTarea}: Props) => {
             <span>{item.texto}</span>
         </div>
         <div className='mr-4'>
-            <button className='bg-[#48e] py-1 px-3 rounded text-white' onClick={() => onCambioTarea(item.id)}>Deshacer</button>
+            <button className='bg-[#48e] py-1 px-3 rounded text-white' onClick={() => onCambioTarea(item.id)}>Desacer</button>
         </div>
     </div>
     )

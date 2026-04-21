@@ -14,7 +14,7 @@ export const Completado = ({ item, onCambioTarea, eliminarTarea }: Props) => {
             <span>{item.texto}</span>
         </div>
         <div className='mr-4 flex gap-2'>
-            <button className='bg-[#48e] py-1 px-3 rounded text-white' onClick={() => onCambioTarea(item.id)}>Desacer</button>
+            <button className='bg-[#48e] py-1 px-3 rounded text-white' onClick={() => onCambioTarea(item.id)}>Devolver</button>
             <button className='bg-[#e11406] py-1 px-3 rounded text-white' onClick={() => eliminarTarea(item.id)}>Eliminar</button>
         </div>
     </div>
